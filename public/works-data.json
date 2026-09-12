@@ -1,0 +1,82 @@
+{
+  "groups": [
+    {
+      "id": "group-logo",
+      "name": "Logo",
+      "slug": "logo",
+      "description": "Marks and identity systems built to last.",
+      "coverImage": "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80",
+      "items": [
+        {
+          "id": "item-northline",
+          "title": "Northline",
+          "description": "Logo and brand mark for a mobility startup.",
+          "website": "https://example.com",
+          "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          "id": "item-atelier",
+          "title": "Atelier",
+          "description": "Wordmark and symbol set for a design house.",
+          "website": "https://example.com",
+          "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80"
+        }
+      ]
+    },
+    {
+      "id": "group-brand",
+      "name": "Brand",
+      "slug": "brand",
+      "description": "Brandbooks, guidelines, and visual systems.",
+      "coverImage": "https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop&w=1200&q=80",
+      "items": [
+        {
+          "id": "item-loom",
+          "title": "Loom Studio",
+          "description": "Full brandbook covering voice, type, and colour.",
+          "website": "https://example.com",
+          "image": "https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop&w=1200&q=80"
+        }
+      ]
+    },
+    {
+      "id": "group-social",
+      "name": "Social",
+      "slug": "social",
+      "description": "Templates, campaigns, and feed systems.",
+      "coverImage": "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1200&q=80",
+      "items": [
+        {
+          "id": "item-pulse",
+          "title": "Pulse Co.",
+          "description": "Social kit and campaign creatives for product launches.",
+          "website": "https://example.com",
+          "image": "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          "id": "item-vertex",
+          "title": "Vertex",
+          "description": "Ongoing social templates for a digital brand.",
+          "website": "https://example.com",
+          "image": "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1200&q=80"
+        }
+      ]
+    },
+    {
+      "id": "group-web",
+      "name": "Web",
+      "slug": "web",
+      "description": "Websites and digital experiences.",
+      "coverImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      "items": [
+        {
+          "id": "item-horizon",
+          "title": "Horizon",
+          "description": "Marketing site design aligned with the brand system.",
+          "website": "https://example.com",
+          "image": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=1200&q=80"
+        }
+      ]
+    }
+  ]
+}

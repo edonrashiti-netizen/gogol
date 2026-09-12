@@ -1,27 +1,26 @@
-import { Nav } from './components/Nav'
-import { Hero } from './components/Hero'
-import { Pillars } from './components/Pillars'
-import { Services } from './components/Services'
-import { Works } from './components/Works'
-import { About } from './components/About'
-import { Testimonials } from './components/Testimonials'
-import { Contact } from './components/Contact'
-import { Footer } from './components/Footer'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { WorksProvider } from './context/WorksContext'
+import { ScrollToHash } from './components/ScrollToHash'
+import { HomePage } from './pages/HomePage'
+import { WorkGroupPage } from './pages/WorkGroupPage'
+import { AdminLoginPage } from './pages/admin/AdminLoginPage'
+import { AdminDashboardPage } from './pages/admin/AdminDashboardPage'
+import { AdminGroupEditPage } from './pages/admin/AdminGroupEditPage'
 
 export default function App() {
   return (
-    <>
-      <Nav />
-      <main>
-        <Hero />
-        <Pillars />
-        <Services />
-        <Works />
-        <About />
-        <Testimonials />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <BrowserRouter>
+      <WorksProvider>
+        <ScrollToHash />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/work/:slug" element={<WorkGroupPage />} />
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+          <Route path="/admin" element={<AdminDashboardPage />} />
+          <Route path="/admin/groups/:groupId" element={<AdminGroupEditPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </WorksProvider>
+    </BrowserRouter>
   )
 }

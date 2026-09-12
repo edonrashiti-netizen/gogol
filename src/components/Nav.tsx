@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { navLinks } from '../data/content'
 import './Nav.css'
 
-export function Nav() {
+type NavProps = {
+  variant?: 'overlay' | 'solid'
+}
+
+export function Nav({ variant = 'overlay' }: NavProps) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const location = useLocation()
+  const isHome = location.pathname === '/'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -21,22 +28,26 @@ export function Nav() {
     }
   }, [open])
 
+  const hrefFor = (hash: string) => (isHome ? hash : `/${hash}`)
+
   return (
-    <header className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
+    <header
+      className={`nav ${scrolled || variant === 'solid' ? 'nav--scrolled' : ''}`}
+    >
       <div className="nav__inner container">
-        <a href="#top" className="nav__logo" aria-label="Gogol home">
+        <Link to="/" className="nav__logo" aria-label="Gogol home">
           <img src="/logo/gogol-white.svg" alt="Gogol" />
-        </a>
+        </Link>
 
         <nav className="nav__links" aria-label="Primary">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href}>
+            <a key={link.href} href={hrefFor(link.href)}>
               {link.label}
             </a>
           ))}
         </nav>
 
-        <a href="#contact" className="nav__cta ghost-btn">
+        <a href={hrefFor('#contact')} className="nav__cta ghost-btn">
           Get started
         </a>
 
@@ -64,7 +75,7 @@ export function Nav() {
             {navLinks.map((link, i) => (
               <motion.a
                 key={link.href}
-                href={link.href}
+                href={hrefFor(link.href)}
                 onClick={() => setOpen(false)}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -74,7 +85,7 @@ export function Nav() {
               </motion.a>
             ))}
             <a
-              href="#contact"
+              href={hrefFor('#contact')}
               className="ghost-btn"
               onClick={() => setOpen(false)}
             >

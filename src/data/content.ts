@@ -35,45 +35,6 @@ export const services = [
   { number: '.09', title: 'Other design' },
 ]
 
-export const projects = [
-  {
-    title: 'Northline',
-    tags: ['Logo', 'Brandbook'],
-    image:
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    title: 'Pulse Co.',
-    tags: ['Identity', 'Social'],
-    image:
-      'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    title: 'Atelier',
-    tags: ['Logo', 'Guidelines'],
-    image:
-      'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    title: 'Vertex',
-    tags: ['Social', 'Campaign'],
-    image:
-      'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    title: 'Loom Studio',
-    tags: ['Brandbook', 'Website'],
-    image:
-      'https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    title: 'Horizon',
-    tags: ['Identity', 'Web'],
-    image:
-      'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=1200&q=80',
-  },
-]
-
 export const aboutFocus = [
   { title: 'Identity', subtitle: 'Logos & brand marks' },
   { title: 'Systems', subtitle: 'Brandbooks that guide' },
@@ -117,7 +78,7 @@ export const testimonials = [
 ]
 
 export const servicesEyebrow = 'Focused on brand, open to more'
-export const worksEyebrow = 'Things we\'ve made'
-export const aboutEyebrow = 'We\'re more than a logo shop'
+export const worksEyebrow = 'Browse by group'
+export const aboutEyebrow = "We're more than a logo shop"
 export const contactLead =
   'Logo, brandbook, social — or a website and other design. Tell us what you need.'

@@ -1,14 +1,11 @@
-import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { projects, worksEyebrow } from '../data/content'
+import { worksEyebrow } from '../data/content'
+import { useWorks } from '../context/WorksContext'
 import './Works.css'
 
 export function Works() {
-  const trackRef = useRef<HTMLDivElement>(null)
-
-  const scrollBy = (dir: 1 | -1) => {
-    trackRef.current?.scrollBy({ left: dir * 360, behavior: 'smooth' })
-  }
+  const { data, loading } = useWorks()
 
   return (
     <section className="section works" id="works">
@@ -23,38 +20,34 @@ export function Works() {
           <h2 className="section-title">Works.</h2>
           <p className="section-eyebrow">{worksEyebrow}</p>
         </motion.div>
-
-        <div className="works__controls">
-          <button type="button" onClick={() => scrollBy(-1)} aria-label="Previous projects">
-            ←
-          </button>
-          <button type="button" onClick={() => scrollBy(1)} aria-label="Next projects">
-            →
-          </button>
-          <a href="#contact" className="ghost-btn works__view">
-            View all
-          </a>
-        </div>
       </div>
 
-      <div className="works__track" ref={trackRef}>
-        {projects.map((project, i) => (
-          <motion.article
-            key={project.title}
-            className="works__card"
+      <div className="container works__groups">
+        {loading && <p className="works__status">Loading…</p>}
+        {!loading && data.groups.length === 0 && (
+          <p className="works__status">Work groups coming soon.</p>
+        )}
+        {data.groups.map((group, i) => (
+          <motion.div
+            key={group.id}
             initial={{ opacity: 0, y: 36 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: i * 0.05, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ delay: i * 0.06, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="works__image">
-              <img src={project.image} alt="" loading="lazy" />
-            </div>
-            <div className="works__meta">
-              <h3>{project.title}</h3>
-              <p>{project.tags.join(' · ')}</p>
-            </div>
-          </motion.article>
+            <Link to={`/work/${group.slug}`} className="works__group">
+              <div className="works__image">
+                <img src={group.coverImage} alt="" loading="lazy" />
+              </div>
+              <div className="works__meta">
+                <h3>{group.name}</h3>
+                <p>{group.description}</p>
+                <span className="works__count">
+                  {group.items.length} {group.items.length === 1 ? 'project' : 'projects'} →
+                </span>
+              </div>
+            </Link>
+          </motion.div>
         ))}
       </div>
     </section>
