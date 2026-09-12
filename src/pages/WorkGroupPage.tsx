@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Nav } from '../components/Nav'
 import { Footer } from '../components/Footer'
+import { ProjectGallery } from '../components/ProjectGallery'
 import { useWorks } from '../context/WorksContext'
 import './WorkGroupPage.css'
 
@@ -56,19 +57,7 @@ export function WorkGroupPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.06, duration: 0.55 }}
                   >
-                    {item.images.length > 0 && (
-                      <div
-                        className={`work-page__gallery ${
-                          item.images.length > 1 ? 'work-page__gallery--multi' : ''
-                        }`}
-                      >
-                        {item.images.map((src, photoIndex) => (
-                          <div key={`${item.id}-${photoIndex}`} className="work-page__image">
-                            <img src={src} alt="" loading="lazy" />
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                    <ProjectGallery images={item.images} title={item.title} />
                     <div className="work-page__body">
                       <h2>{item.title}</h2>
                       <p>{item.description}</p>
