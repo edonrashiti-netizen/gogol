@@ -16,7 +16,22 @@ import {
   saveWorksDataLocal,
 } from '../lib/worksStorage'
 import { seedWorksData } from '../data/seedWorks'
-import { createId, slugify, type WorkGroup, type WorkItem, type WorksData } from '../types/works'
+import {
+  createId,
+  MAX_PROJECT_IMAGES,
+  normalizeWorksData,
+  slugify,
+  type WorkGroup,
+  type WorkItem,
+  type WorksData,
+} from '../types/works'
+
+type ItemInput = {
+  title: string
+  description: string
+  website?: string
+  images: string[]
+}
 
 type WorksContextValue = {
   data: WorksData
@@ -28,15 +43,8 @@ type WorksContextValue = {
     input: { name: string; description: string; coverImage: string; slug: string },
   ) => void
   deleteGroup: (id: string) => void
-  addItem: (
-    groupId: string,
-    input: { title: string; description: string; website: string; image?: string },
-  ) => void
-  updateItem: (
-    groupId: string,
-    itemId: string,
-    input: { title: string; description: string; website: string; image?: string },
-  ) => void
+  addItem: (groupId: string, input: ItemInput) => void
+  updateItem: (groupId: string, itemId: string, input: ItemInput) => void
   deleteItem: (groupId: string, itemId: string) => void
   exportData: () => void
   publishData: () => Promise<{ ok: boolean; reason?: 'blob' | 'error' }>
@@ -47,16 +55,16 @@ type WorksContextValue = {
 const WorksContext = createContext<WorksContextValue | null>(null)
 
 export function WorksProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<WorksData>(seedWorksData)
+  const [data, setData] = useState<WorksData>(() => normalizeWorksData(seedWorksData))
   const [loading, setLoading] = useState(false)
 
   const reload = useCallback(async () => {
     setLoading(true)
     try {
       const loaded = await loadWorksData()
-      setData(loaded)
+      setData(normalizeWorksData(loaded))
     } catch {
-      setData(seedWorksData)
+      setData(normalizeWorksData(seedWorksData))
     } finally {
       setLoading(false)
     }
@@ -67,8 +75,9 @@ export function WorksProvider({ children }: { children: ReactNode }) {
   }, [reload])
 
   const persist = useCallback((next: WorksData) => {
-    setData(next)
-    saveWorksDataLocal(next)
+    const normalized = normalizeWorksData(next)
+    setData(normalized)
+    saveWorksDataLocal(normalized)
   }, [])
 
   const getGroupBySlug = useCallback(
@@ -132,16 +141,13 @@ export function WorksProvider({ children }: { children: ReactNode }) {
   )
 
   const addItem = useCallback(
-    (
-      groupId: string,
-      input: { title: string; description: string; website: string; image?: string },
-    ) => {
+    (groupId: string, input: ItemInput) => {
       const item: WorkItem = {
         id: createId(),
         title: input.title.trim(),
         description: input.description.trim(),
-        website: input.website.trim(),
-        image: input.image?.trim() || undefined,
+        website: input.website?.trim() || undefined,
+        images: input.images.filter(Boolean).slice(0, MAX_PROJECT_IMAGES),
       }
       persist({
         groups: data.groups.map((group) =>
@@ -153,11 +159,7 @@ export function WorksProvider({ children }: { children: ReactNode }) {
   )
 
   const updateItem = useCallback(
-    (
-      groupId: string,
-      itemId: string,
-      input: { title: string; description: string; website: string; image?: string },
-    ) => {
+    (groupId: string, itemId: string, input: ItemInput) => {
       persist({
         groups: data.groups.map((group) =>
           group.id === groupId
@@ -169,8 +171,8 @@ export function WorksProvider({ children }: { children: ReactNode }) {
                         ...item,
                         title: input.title.trim(),
                         description: input.description.trim(),
-                        website: input.website.trim(),
-                        image: input.image?.trim() || undefined,
+                        website: input.website?.trim() || undefined,
+                        images: input.images.filter(Boolean).slice(0, MAX_PROJECT_IMAGES),
                       }
                     : item,
                 ),

@@ -52,10 +52,24 @@
   display: grid;
 }
 
+.work-page__gallery {
+  display: grid;
+  gap: 2px;
+  background: #111;
+}
+
+.work-page__gallery--multi {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .work-page__image {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background: #111;
+}
+
+.work-page__gallery--multi .work-page__image:first-child:nth-last-child(odd) {
+  grid-column: 1 / -1;
 }
 
 .work-page__image img {
@@ -75,10 +89,12 @@
 
 .work-page__body p {
   color: var(--muted);
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .work-page__body a {
+  display: inline-block;
+  margin-top: 1rem;
   color: var(--accent);
   font-weight: 500;
 }

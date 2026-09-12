@@ -1,7 +1,7 @@
 import { seedWorksData } from '../data/seedWorks'
-import type { WorksData } from '../types/works'
+import { normalizeWorksData, type WorksData } from '../types/works'
 
-const STORAGE_KEY = 'gogol-works-data-v2'
+const STORAGE_KEY = 'gogol-works-data-v3'
 const AUTH_KEY = 'gogol-admin-auth'
 
 export const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'gogol-admin'
@@ -29,13 +29,13 @@ async function fetchPublished(): Promise<WorksData> {
   try {
     const response = await fetchWithTimeout('/works-data.json')
     if (response.ok) {
-      const data = (await response.json()) as WorksData
-      if (Array.isArray(data.groups) && data.groups.length > 0) return data
+      const data = normalizeWorksData(await response.json())
+      if (data.groups.length > 0) return data
     }
   } catch {
     // use seed
   }
-  return seedWorksData
+  return normalizeWorksData(seedWorksData)
 }
 
 export async function loadWorksData(): Promise<WorksData> {
@@ -44,8 +44,7 @@ export async function loadWorksData(): Promise<WorksData> {
       const local = localStorage.getItem(STORAGE_KEY)
       if (local) {
         try {
-          const parsed = JSON.parse(local) as WorksData
-          if (Array.isArray(parsed.groups)) return parsed
+          return normalizeWorksData(JSON.parse(local))
         } catch {
           localStorage.removeItem(STORAGE_KEY)
         }
@@ -53,16 +52,17 @@ export async function loadWorksData(): Promise<WorksData> {
     }
     return await fetchPublished()
   } catch {
-    return seedWorksData
+    return normalizeWorksData(seedWorksData)
   }
 }
 
 export function saveWorksDataLocal(data: WorksData) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeWorksData(data)))
 }
 
 export async function publishWorksData(data: WorksData, password: string) {
-  saveWorksDataLocal(data)
+  const normalized = normalizeWorksData(data)
+  saveWorksDataLocal(normalized)
 
   try {
     const response = await fetch('/api/works', {
@@ -71,7 +71,7 @@ export async function publishWorksData(data: WorksData, password: string) {
         'Content-Type': 'application/json',
         'x-admin-password': password,
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(normalized),
       signal: AbortSignal.timeout(5000),
     })
 
@@ -92,7 +92,9 @@ export function clearLocalWorksData() {
 }
 
 export function downloadWorksData(data: WorksData) {
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+  const blob = new Blob([JSON.stringify(normalizeWorksData(data), null, 2)], {
+    type: 'application/json',
+  })
   const url = URL.createObjectURL(blob)
   const anchor = document.createElement('a')
   anchor.href = url

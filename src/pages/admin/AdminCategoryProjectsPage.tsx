@@ -1,7 +1,9 @@
 import { useMemo, useState, type FormEvent } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { useWorks } from '../../context/WorksContext'
+import { filesToDataUrls } from '../../lib/imageUpload'
 import { isAdminAuthenticated } from '../../lib/worksStorage'
+import { MAX_PROJECT_IMAGES } from '../../types/works'
 import './Admin.css'
 
 export function AdminCategoryProjectsPage() {
@@ -17,7 +19,10 @@ export function AdminCategoryProjectsPage() {
   const [title, setTitle] = useState('')
   const [itemDescription, setItemDescription] = useState('')
   const [website, setWebsite] = useState('')
-  const [image, setImage] = useState('')
+  const [images, setImages] = useState<string[]>([])
+  const [urlDraft, setUrlDraft] = useState('')
+  const [uploading, setUploading] = useState(false)
+  const [formError, setFormError] = useState('')
 
   if (!isAdminAuthenticated()) {
     return <Navigate to="/admin/login" replace />
@@ -36,9 +41,11 @@ export function AdminCategoryProjectsPage() {
     setTitle('')
     setItemDescription('')
     setWebsite('')
-    setImage('')
+    setImages([])
+    setUrlDraft('')
     setEditingItemId(null)
     setShowForm(false)
+    setFormError('')
   }
 
   const openAdd = () => {
@@ -46,7 +53,9 @@ export function AdminCategoryProjectsPage() {
     setTitle('')
     setItemDescription('')
     setWebsite('')
-    setImage('')
+    setImages([])
+    setUrlDraft('')
+    setFormError('')
     setShowForm(true)
   }
 
@@ -56,9 +65,45 @@ export function AdminCategoryProjectsPage() {
     setEditingItemId(item.id)
     setTitle(item.title)
     setItemDescription(item.description)
-    setWebsite(item.website)
-    setImage(item.image || '')
+    setWebsite(item.website || '')
+    setImages(item.images || [])
+    setUrlDraft('')
+    setFormError('')
     setShowForm(true)
+  }
+
+  const onUpload = async (fileList: FileList | null) => {
+    if (!fileList?.length) return
+    if (images.length >= MAX_PROJECT_IMAGES) {
+      setFormError(`Maximum ${MAX_PROJECT_IMAGES} photos per project.`)
+      return
+    }
+    setUploading(true)
+    setFormError('')
+    try {
+      const added = await filesToDataUrls(fileList, images.length)
+      setImages((current) => [...current, ...added].slice(0, MAX_PROJECT_IMAGES))
+    } catch {
+      setFormError('Could not upload one or more images.')
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  const addImageUrl = () => {
+    const url = urlDraft.trim()
+    if (!url) return
+    if (images.length >= MAX_PROJECT_IMAGES) {
+      setFormError(`Maximum ${MAX_PROJECT_IMAGES} photos per project.`)
+      return
+    }
+    setImages((current) => [...current, url].slice(0, MAX_PROJECT_IMAGES))
+    setUrlDraft('')
+    setFormError('')
+  }
+
+  const removeImage = (index: number) => {
+    setImages((current) => current.filter((_, i) => i !== index))
   }
 
   const onSaveItem = (e: FormEvent) => {
@@ -66,8 +111,8 @@ export function AdminCategoryProjectsPage() {
     const payload = {
       title,
       description: itemDescription,
-      website,
-      image: image || undefined,
+      website: website.trim() || undefined,
+      images,
     }
     if (editingItemId) {
       updateItem(category.id, editingItemId, payload)
@@ -124,20 +169,64 @@ export function AdminCategoryProjectsPage() {
               />
             </label>
             <label>
-              Website
+              Website (optional)
               <input
                 value={website}
                 onChange={(e) => setWebsite(e.target.value)}
-                required
-                placeholder="https://"
+                placeholder="https:// — leave blank to hide Visit website"
               />
             </label>
-            <label>
-              Image URL (optional)
-              <input value={image} onChange={(e) => setImage(e.target.value)} placeholder="https://" />
-            </label>
+
+            <div className="admin-photos">
+              <div className="admin-card__head">
+                <h2>Photos ({images.length}/{MAX_PROJECT_IMAGES})</h2>
+              </div>
+              <p className="admin-hint">Upload up to {MAX_PROJECT_IMAGES} photos, or paste image URLs.</p>
+
+              <div className="admin-photos__grid">
+                {images.map((src, index) => (
+                  <div key={`${src.slice(0, 24)}-${index}`} className="admin-photos__item">
+                    <img src={src} alt="" />
+                    <button type="button" onClick={() => removeImage(index)}>
+                      Remove
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {images.length < MAX_PROJECT_IMAGES && (
+                <>
+                  <label className="admin-upload">
+                    <span>{uploading ? 'Uploading…' : 'Upload photos'}</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      disabled={uploading}
+                      onChange={(e) => {
+                        void onUpload(e.target.files)
+                        e.target.value = ''
+                      }}
+                    />
+                  </label>
+
+                  <div className="admin-form__row admin-form__row--url">
+                    <input
+                      value={urlDraft}
+                      onChange={(e) => setUrlDraft(e.target.value)}
+                      placeholder="Or paste image URL"
+                    />
+                    <button type="button" onClick={addImageUrl}>
+                      Add URL
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {formError && <p className="admin-error">{formError}</p>}
             <div className="admin-form__row">
-              <button type="submit" className="ghost-btn">
+              <button type="submit" className="ghost-btn" disabled={uploading}>
                 {editingItemId ? 'Save project' : 'Add project'}
               </button>
               <button type="button" onClick={resetForm}>
@@ -169,12 +258,18 @@ export function AdminCategoryProjectsPage() {
           <ul className="admin-list">
             {category.items.map((item) => (
               <li key={item.id}>
-                <div>
-                  <strong>{item.title}</strong>
-                  <span>{item.description}</span>
-                  <a href={item.website} target="_blank" rel="noreferrer">
-                    {item.website}
-                  </a>
+                <div className="admin-list__project">
+                  {item.images[0] && (
+                    <img className="admin-list__thumb" src={item.images[0]} alt="" />
+                  )}
+                  <div>
+                    <strong>{item.title}</strong>
+                    <span>{item.description}</span>
+                    <span>
+                      {item.images.length} {item.images.length === 1 ? 'photo' : 'photos'}
+                      {item.website ? ` · ${item.website}` : ' · no website'}
+                    </span>
+                  </div>
                 </div>
                 <div className="admin-list__actions">
                   <button type="button" onClick={() => openEdit(item.id)}>

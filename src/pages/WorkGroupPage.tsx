@@ -56,19 +56,27 @@ export function WorkGroupPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.06, duration: 0.55 }}
                   >
-                    {item.image && (
-                      <div className="work-page__image">
-                        <img src={item.image} alt="" loading="lazy" />
+                    {item.images.length > 0 && (
+                      <div
+                        className={`work-page__gallery ${
+                          item.images.length > 1 ? 'work-page__gallery--multi' : ''
+                        }`}
+                      >
+                        {item.images.map((src, photoIndex) => (
+                          <div key={`${item.id}-${photoIndex}`} className="work-page__image">
+                            <img src={src} alt="" loading="lazy" />
+                          </div>
+                        ))}
                       </div>
                     )}
                     <div className="work-page__body">
                       <h2>{item.title}</h2>
                       <p>{item.description}</p>
-                      {item.website && (
+                      {item.website ? (
                         <a href={item.website} target="_blank" rel="noreferrer">
                           Visit website →
                         </a>
-                      )}
+                      ) : null}
                     </div>
                   </motion.article>
                 ))}

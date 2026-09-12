@@ -222,3 +222,70 @@
   color: #fff;
   font-size: 0.95rem;
 }
+
+.admin-photos {
+  display: grid;
+  gap: 0.85rem;
+  padding-top: 0.35rem;
+}
+
+.admin-photos__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.75rem;
+}
+
+.admin-photos__item {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.admin-photos__item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  background: #0a0a0a;
+}
+
+.admin-upload {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.7rem 1.1rem;
+  border: 1px dashed rgba(247, 83, 13, 0.55);
+  color: #fff;
+  cursor: pointer;
+}
+
+.admin-upload input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.admin-form__row--url {
+  align-items: center;
+}
+
+.admin-form__row--url input {
+  flex: 1;
+  min-width: 180px;
+}
+
+.admin-list__project {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.admin-list__thumb {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}

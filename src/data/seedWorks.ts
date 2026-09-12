@@ -16,8 +16,10 @@ export const seedWorksData: WorksData = {
           title: 'Northline',
           description: 'Logo and brand mark for a mobility startup.',
           website: 'https://example.com',
-          image:
+          images: [
             'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80',
+          ],
         },
       ],
     },
@@ -33,9 +35,9 @@ export const seedWorksData: WorksData = {
           id: 'item-pulse',
           title: 'Pulse Co.',
           description: 'Social kit and campaign creatives for product launches.',
-          website: 'https://example.com',
-          image:
+          images: [
             'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=80',
+          ],
         },
       ],
     },
@@ -52,8 +54,9 @@ export const seedWorksData: WorksData = {
           title: 'Horizon',
           description: 'Marketing site design aligned with the brand system.',
           website: 'https://example.com',
-          image:
+          images: [
             'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=1200&q=80',
+          ],
         },
       ],
     },
