@@ -243,7 +243,9 @@
 .admin-photos__item img {
   width: 100%;
   aspect-ratio: 1;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  padding: 0.35rem;
   border: 1px solid var(--border);
   background: #0a0a0a;
 }
@@ -285,7 +287,10 @@
 .admin-list__thumb {
   width: 56px;
   height: 56px;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  padding: 0.2rem;
   border: 1px solid var(--border);
+  background: #0a0a0a;
   flex-shrink: 0;
 }
