@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { aboutFocus } from '../data/content'
+import { aboutColumns, aboutEyebrow, aboutFocus } from '../data/content'
 import './About.css'
 
 export function About() {
@@ -15,10 +15,10 @@ export function About() {
         >
           <div className="section-rule" />
           <h2 className="section-title">About.</h2>
-          <p className="section-eyebrow">We're more than a digital agency</p>
+          <p className="section-eyebrow">{aboutEyebrow}</p>
           <p className="about__lead">
-            Gogol partners with ambitious teams to build brands and digital products that feel
-            intentional — from first sketch to launch day.
+            Gogol is a branding studio. We design logos, write brandbooks, and craft social systems
+            so your identity stays clear everywhere it shows up.
           </p>
         </motion.div>
 
@@ -38,20 +38,7 @@ export function About() {
         </div>
 
         <div className="about__columns">
-          {[
-            {
-              title: 'Who we are',
-              body: 'A compact studio of strategists, designers, and builders who care about craft as much as outcomes.',
-            },
-            {
-              title: 'Our philosophy',
-              body: 'Clarity beats clutter. We strip work down to what matters, then sharpen every detail until it sings.',
-            },
-            {
-              title: 'How we work',
-              body: 'Tight collaboration, transparent process, and momentum from day one — so ideas reach the world faster.',
-            },
-          ].map((col, i) => (
+          {aboutColumns.map((col, i) => (
             <motion.div
               key={col.title}
               initial={{ opacity: 0, y: 24 }}

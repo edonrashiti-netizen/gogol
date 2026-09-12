@@ -3,27 +3,28 @@ import { pillars } from '../data/content'
 import './Pillars.css'
 
 function PillarIcon({ type }: { type: (typeof pillars)[number]['icon'] }) {
-  if (type === 'vision') {
+  if (type === 'brandbook') {
     return (
       <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <rect x="8" y="28" width="6" height="12" stroke="currentColor" strokeWidth="2" />
-        <rect x="18" y="20" width="6" height="20" stroke="currentColor" strokeWidth="2" />
-        <rect x="28" y="12" width="6" height="28" stroke="currentColor" strokeWidth="2" />
-        <rect x="38" y="18" width="6" height="22" stroke="currentColor" strokeWidth="2" />
+        <path d="M12 10h20a4 4 0 014 4v24H16a4 4 0 01-4-4V10z" stroke="currentColor" strokeWidth="2" />
+        <path d="M16 10v28" stroke="currentColor" strokeWidth="2" />
+        <path d="M22 18h10M22 24h10M22 30h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
     )
   }
-  if (type === 'product') {
+  if (type === 'logo') {
     return (
       <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <path d="M24 8l4 12h12l-10 7 4 12-10-7-10 7 4-12-10-7h12l4-12z" stroke="currentColor" strokeWidth="2" />
+        <circle cx="24" cy="24" r="14" stroke="currentColor" strokeWidth="2" />
+        <circle cx="24" cy="24" r="4" fill="currentColor" />
       </svg>
     )
   }
   return (
     <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-      <circle cx="24" cy="24" r="14" stroke="currentColor" strokeWidth="2" />
-      <path d="M24 10v14l10 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <rect x="10" y="12" width="28" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
+      <circle cx="18" cy="20" r="2.5" fill="currentColor" />
+      <path d="M14 30l6-6 4 4 8-8 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }

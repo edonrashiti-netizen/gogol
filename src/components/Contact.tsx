@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
+import { contactLead } from '../data/content'
 import './Contact.css'
 
 export function Contact() {
@@ -21,7 +22,7 @@ export function Contact() {
         >
           <div className="section-rule" />
           <h2 className="section-title">Let's talk?</h2>
-          <p className="contact__lead">Let's make something awesome together.</p>
+          <p className="contact__lead">{contactLead}</p>
         </motion.div>
 
         <motion.form

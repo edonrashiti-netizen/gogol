@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { services } from '../data/content'
+import { services, servicesEyebrow } from '../data/content'
 import './Services.css'
 
 export function Services() {
@@ -14,7 +14,7 @@ export function Services() {
         >
           <div className="section-rule" />
           <h2 className="section-title">Services.</h2>
-          <p className="section-eyebrow">We work with you, not for you</p>
+          <p className="section-eyebrow">{servicesEyebrow}</p>
         </motion.div>
 
         <div className="services__grid">

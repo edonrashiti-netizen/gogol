@@ -48,10 +48,10 @@ export function Hero() {
           custom={1}
         />
         <motion.h1 variants={fadeUp} initial="hidden" animate="show" custom={2}>
-          We're a digital agency.
+          Brandbooks, logos & social.
         </motion.h1>
         <motion.p variants={fadeUp} initial="hidden" animate="show" custom={3}>
-          Brand, product, and web — crafted with clarity and motion that moves people.
+          Gogol builds identity systems that look sharp and stay consistent — from the mark to the feed.
         </motion.p>
         <motion.a
           href="#contact"

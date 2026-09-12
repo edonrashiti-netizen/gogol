@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
-import { projects } from '../data/content'
+import { projects, worksEyebrow } from '../data/content'
 import './Works.css'
 
 export function Works() {
@@ -21,7 +21,7 @@ export function Works() {
         >
           <div className="section-rule" />
           <h2 className="section-title">Works.</h2>
-          <p className="section-eyebrow">Things we've made</p>
+          <p className="section-eyebrow">{worksEyebrow}</p>
         </motion.div>
 
         <div className="works__controls">

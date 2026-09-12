@@ -7,96 +7,116 @@ export const navLinks = [
 
 export const pillars = [
   {
-    title: 'Future Vision.',
-    body: 'We shape long-term brand systems that stay sharp as markets and products evolve.',
-    icon: 'vision' as const,
+    title: 'Brandbooks.',
+    body: 'Complete brand systems — voice, rules, and guidelines so every touchpoint stays consistent.',
+    icon: 'brandbook' as const,
   },
   {
-    title: 'Product Design.',
-    body: 'Interfaces and experiences built to feel inevitable — clear, fast, and memorable.',
-    icon: 'product' as const,
+    title: 'Logos.',
+    body: 'Marks that feel inevitable: distinctive, scalable, and built to live across print and screen.',
+    icon: 'logo' as const,
   },
   {
-    title: 'Innovative Solutions.',
-    body: 'Strategy, craft, and technology working together so every launch lands with impact.',
-    icon: 'solutions' as const,
+    title: 'Social Media.',
+    body: 'Templates, campaigns, and visual systems that keep your feed sharp and on-brand every day.',
+    icon: 'social' as const,
   },
 ]
 
 export const services = [
-  { number: '.01', title: 'Digital strategy' },
-  { number: '.02', title: 'UX Design' },
-  { number: '.03', title: 'Product Design' },
-  { number: '.04', title: 'Content Strategy' },
-  { number: '.05', title: 'Design & Concept' },
-  { number: '.06', title: 'Social Media' },
-  { number: '.07', title: 'Media Planning' },
-  { number: '.08', title: 'Brand Identity' },
-  { number: '.09', title: 'SEO Optimization' },
+  { number: '.01', title: 'Brand strategy' },
+  { number: '.02', title: 'Logo design' },
+  { number: '.03', title: 'Brand identity' },
+  { number: '.04', title: 'Brandbooks & guidelines' },
+  { number: '.05', title: 'Visual systems' },
+  { number: '.06', title: 'Social media design' },
+  { number: '.07', title: 'Content templates' },
+  { number: '.08', title: 'Campaign creatives' },
+  { number: '.09', title: 'Brand refresh' },
 ]
 
 export const projects = [
   {
     title: 'Northline',
-    tags: ['Brand', 'Web'],
+    tags: ['Logo', 'Brandbook'],
     image:
       'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
   },
   {
-    title: 'Pulse App',
-    tags: ['Product', 'UX'],
+    title: 'Pulse Co.',
+    tags: ['Identity', 'Social'],
     image:
-      'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1611162617474-5b21e11e480f?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Atelier',
-    tags: ['Identity', 'Campaign'],
+    tags: ['Logo', 'Guidelines'],
     image:
       'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Vertex',
-    tags: ['Web', 'Motion'],
+    tags: ['Social', 'Campaign'],
     image:
-      'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Loom Studio',
-    tags: ['Brand', 'Packaging'],
+    tags: ['Brandbook', 'Identity'],
     image:
       'https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Horizon',
-    tags: ['Product', 'Design'],
+    tags: ['Logo', 'Social'],
     image:
       'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=1200&q=80',
   },
 ]
 
 export const aboutFocus = [
-  { title: 'Teamwork', subtitle: 'Committed and creative' },
-  { title: 'Philosophy', subtitle: 'Trust pays off' },
-  { title: 'Studio', subtitle: 'Craft over noise' },
+  { title: 'Identity', subtitle: 'Logos that last' },
+  { title: 'Systems', subtitle: 'Brandbooks that guide' },
+  { title: 'Presence', subtitle: 'Social that stays sharp' },
+]
+
+export const aboutColumns = [
+  {
+    title: 'Who we are',
+    body: 'A branding studio focused on logos, brandbooks, and social design — craft first, clarity always.',
+  },
+  {
+    title: 'Our philosophy',
+    body: 'A strong brand is a system, not a single mark. We build rules people can actually use.',
+  },
+  {
+    title: 'How we work',
+    body: 'From discovery to final guidelines and social kits — collaborative, structured, and on schedule.',
+  },
 ]
 
 export const testimonials = [
   {
     quote:
-      'Gogol turned a fragmented brand into a clear system. The launch felt sharp, modern, and unmistakably ours.',
+      'Gogol gave us a logo and brandbook our whole team finally understands. Every post looks like us now.',
     name: 'Aron Smith',
-    role: 'Head of Product',
+    role: 'Founder',
   },
   {
     quote:
-      'They work with you, not for you. Strategy, design, and delivery moved as one — and the results showed.',
+      'The social templates alone saved us hours every week — and the brand still feels premium.',
     name: 'Maya Chen',
     role: 'Marketing Director',
   },
   {
     quote:
-      'From first workshop to shipping the site, Gogol kept the bar high without slowing the team down.',
+      'From logo options to a full guidelines deck, Gogol kept the process clear and the craft high.',
     name: 'Jonas Berg',
-    role: 'Founder',
+    role: 'Creative Lead',
   },
 ]
+
+export const servicesEyebrow = 'Brandbooks, logos & social'
+export const worksEyebrow = 'Identity work we are proud of'
+export const aboutEyebrow = 'A branding studio, not a catch-all agency'
+export const contactLead = "Tell us about your brand — logo, guidelines, or social refresh."
