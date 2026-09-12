@@ -1,0 +1,70 @@
+.testimonials__panel {
+  margin-top: 3rem;
+  max-width: 46rem;
+}
+
+.testimonials__panel blockquote {
+  margin: 0;
+}
+
+.testimonials__panel blockquote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.75rem;
+}
+
+.testimonials__panel footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.testimonials__panel strong {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.testimonials__panel span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.testimonials__nav {
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonials__nav > button {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--border);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.testimonials__nav > button:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.testimonials__dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.testimonials__dots button {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.testimonials__dots button.is-active {
+  background: var(--accent);
+  transform: scale(1.15);
+}
