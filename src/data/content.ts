@@ -23,17 +23,23 @@ export const pillars = [
   },
 ]
 
-export const services = [
-  { number: '.01', title: 'Logo design' },
-  { number: '.02', title: 'Brand identity' },
-  { number: '.03', title: 'Brandbooks & guidelines' },
-  { number: '.04', title: 'Social media design' },
-  { number: '.05', title: 'Content templates' },
-  { number: '.06', title: 'Campaign creatives' },
-  { number: '.07', title: 'Visual systems' },
-  { number: '.08', title: 'Website design' },
-  { number: '.09', title: 'Other design' },
-]
+export const servicesCopy = {
+  lead: 'We build brands that hold together — from the first mark to the everyday posts that keep you visible. Most of our work sits in brandbooks, logos, and social; websites and other design come in when the system needs to go further.',
+  points: [
+    {
+      title: 'Start with identity',
+      body: 'Logo, voice, and rules first. Everything else follows from a clear brand core.',
+    },
+    {
+      title: 'Make it usable',
+      body: 'Guidelines and templates your team can run with — not a deck that sits unused.',
+    },
+    {
+      title: 'Extend when needed',
+      body: 'Social, web, and other design when the brand has to show up in more places.',
+    },
+  ],
+}
 
 export const aboutFocus = [
   { title: 'Identity', subtitle: 'Logos & brand marks' },
@@ -77,7 +83,7 @@ export const testimonials = [
   },
 ]
 
-export const servicesEyebrow = 'Focused on brand, open to more'
+export const servicesEyebrow = 'How we work with brands'
 export const worksEyebrow = 'Browse by category'
 export const aboutEyebrow = "We're more than a logo shop"
 export const contactLead =
