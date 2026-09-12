@@ -46,7 +46,7 @@ export const projects = [
     title: 'Pulse Co.',
     tags: ['Identity', 'Social'],
     image:
-      'https://images.unsplash.com/photo-1611162617474-5b21e11e480f?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Atelier',
