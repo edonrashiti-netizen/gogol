@@ -71,7 +71,58 @@
 
 .admin-card h2 {
   font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.admin-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   margin-bottom: 1rem;
+}
+
+.admin-form--spaced {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-subtitle {
+  color: var(--muted);
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+}
+
+.admin-list__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.admin-list__title:hover {
+  color: var(--accent);
+}
+
+.admin-empty {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+  color: var(--muted);
+}
+
+.admin-hint {
+  margin: -0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.admin-success {
+  color: #7dffa0;
 }
 
 .admin-card h1 {

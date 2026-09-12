@@ -11,6 +11,7 @@ export function AdminDashboardPage() {
   const [description, setDescription] = useState('')
   const [coverImage, setCoverImage] = useState('')
   const [message, setMessage] = useState('')
+  const [showAdd, setShowAdd] = useState(false)
 
   if (!isAdminAuthenticated()) {
     return <Navigate to="/admin/login" replace />
@@ -22,6 +23,7 @@ export function AdminDashboardPage() {
     setName('')
     setDescription('')
     setCoverImage('')
+    setShowAdd(false)
     setMessage('Category created. Open it to add projects.')
   }
 
@@ -46,7 +48,7 @@ export function AdminDashboardPage() {
       <header className="admin-top">
         <div>
           <p className="admin-kicker">Gogol admin</p>
-          <h1>Work categories</h1>
+          <h1>Categories</h1>
         </div>
         <div className="admin-top__actions">
           <Link to="/">View site</Link>
@@ -80,54 +82,65 @@ export function AdminDashboardPage() {
       {message && <p className="admin-banner">{message}</p>}
 
       <section className="admin-card">
-        <h2>Add category</h2>
-        <form className="admin-form" onSubmit={onAddGroup}>
-          <label>
-            Name
-            <input value={name} onChange={(e) => setName(e.target.value)} required placeholder="Website design" />
-          </label>
-          <label>
-            Description
-            <input
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-              placeholder="Websites aligned with the brand system"
-            />
-          </label>
-          <label>
-            Cover image URL
-            <input
-              value={coverImage}
-              onChange={(e) => setCoverImage(e.target.value)}
-              required
-              placeholder="https://..."
-            />
-          </label>
-          <button type="submit" className="ghost-btn">
-            Create category
+        <div className="admin-card__head">
+          <h2>All categories</h2>
+          <button type="button" className="ghost-btn" onClick={() => setShowAdd((v) => !v)}>
+            {showAdd ? 'Cancel' : 'Add category'}
           </button>
-        </form>
-      </section>
+        </div>
 
-      <section className="admin-card">
-        <h2>Categories</h2>
+        {showAdd && (
+          <form className="admin-form admin-form--spaced" onSubmit={onAddGroup}>
+            <label>
+              Name
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                placeholder="Logo design"
+              />
+            </label>
+            <label>
+              Description
+              <input
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+                placeholder="Distinctive marks built to scale"
+              />
+            </label>
+            <label>
+              Cover image URL
+              <input
+                value={coverImage}
+                onChange={(e) => setCoverImage(e.target.value)}
+                required
+                placeholder="https://..."
+              />
+            </label>
+            <button type="submit" className="ghost-btn">
+              Create category
+            </button>
+          </form>
+        )}
+
         {loading && <p>Loading…</p>}
         {!loading && data.groups.length === 0 && <p>No categories yet.</p>}
         <ul className="admin-list">
           {data.groups.map((group) => (
             <li key={group.id}>
               <div>
-                <strong>{group.name}</strong>
+                <Link to={`/admin/categories/${group.id}`} className="admin-list__title">
+                  {group.name}
+                </Link>
                 <span>
-                  /work/{group.slug} · {group.items.length} projects
+                  /work/{group.slug} · {group.items.length}{' '}
+                  {group.items.length === 1 ? 'project' : 'projects'}
                 </span>
               </div>
               <div className="admin-list__actions">
-                <Link to={`/admin/groups/${group.id}`}>Edit</Link>
-                <Link to={`/work/${group.slug}`} target="_blank">
-                  Open
-                </Link>
+                <Link to={`/admin/categories/${group.id}`}>Projects</Link>
+                <Link to={`/admin/categories/${group.id}/settings`}>Edit category</Link>
                 <button
                   type="button"
                   onClick={() => {

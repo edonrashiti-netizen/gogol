@@ -1,0 +1,199 @@
+import { useMemo, useState, type FormEvent } from 'react'
+import { Link, Navigate, useParams } from 'react-router-dom'
+import { useWorks } from '../../context/WorksContext'
+import { isAdminAuthenticated } from '../../lib/worksStorage'
+import './Admin.css'
+
+export function AdminCategoryProjectsPage() {
+  const { categoryId = '' } = useParams()
+  const { data, addItem, updateItem, deleteItem } = useWorks()
+  const category = useMemo(
+    () => data.groups.find((item) => item.id === categoryId),
+    [data.groups, categoryId],
+  )
+
+  const [showForm, setShowForm] = useState(false)
+  const [editingItemId, setEditingItemId] = useState<string | null>(null)
+  const [title, setTitle] = useState('')
+  const [itemDescription, setItemDescription] = useState('')
+  const [website, setWebsite] = useState('')
+  const [image, setImage] = useState('')
+
+  if (!isAdminAuthenticated()) {
+    return <Navigate to="/admin/login" replace />
+  }
+
+  if (!category) {
+    return (
+      <div className="admin-shell">
+        <p>Category not found.</p>
+        <Link to="/admin">Back to categories</Link>
+      </div>
+    )
+  }
+
+  const resetForm = () => {
+    setTitle('')
+    setItemDescription('')
+    setWebsite('')
+    setImage('')
+    setEditingItemId(null)
+    setShowForm(false)
+  }
+
+  const openAdd = () => {
+    setEditingItemId(null)
+    setTitle('')
+    setItemDescription('')
+    setWebsite('')
+    setImage('')
+    setShowForm(true)
+  }
+
+  const openEdit = (itemId: string) => {
+    const item = category.items.find((entry) => entry.id === itemId)
+    if (!item) return
+    setEditingItemId(item.id)
+    setTitle(item.title)
+    setItemDescription(item.description)
+    setWebsite(item.website)
+    setImage(item.image || '')
+    setShowForm(true)
+  }
+
+  const onSaveItem = (e: FormEvent) => {
+    e.preventDefault()
+    const payload = {
+      title,
+      description: itemDescription,
+      website,
+      image: image || undefined,
+    }
+    if (editingItemId) {
+      updateItem(category.id, editingItemId, payload)
+    } else {
+      addItem(category.id, payload)
+    }
+    resetForm()
+  }
+
+  return (
+    <div className="admin-shell">
+      <header className="admin-top">
+        <div>
+          <Link to="/admin" className="admin-back">
+            ← Categories
+          </Link>
+          <h1>{category.name}</h1>
+          <p className="admin-subtitle">
+            {category.items.length} {category.items.length === 1 ? 'project' : 'projects'} in this
+            category
+          </p>
+        </div>
+        <div className="admin-top__actions">
+          <Link to={`/admin/categories/${category.id}/settings`}>Edit category</Link>
+          <Link to={`/work/${category.slug}`} target="_blank">
+            View page
+          </Link>
+          <button type="button" className="ghost-btn" onClick={openAdd}>
+            Add project
+          </button>
+        </div>
+      </header>
+
+      {showForm && (
+        <section className="admin-card">
+          <div className="admin-card__head">
+            <h2>{editingItemId ? 'Edit project' : 'Add project'}</h2>
+            <button type="button" onClick={resetForm}>
+              Close
+            </button>
+          </div>
+          <form className="admin-form" onSubmit={onSaveItem}>
+            <label>
+              Title
+              <input value={title} onChange={(e) => setTitle(e.target.value)} required />
+            </label>
+            <label>
+              Small description
+              <textarea
+                value={itemDescription}
+                onChange={(e) => setItemDescription(e.target.value)}
+                required
+                rows={3}
+              />
+            </label>
+            <label>
+              Website
+              <input
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+                required
+                placeholder="https://"
+              />
+            </label>
+            <label>
+              Image URL (optional)
+              <input value={image} onChange={(e) => setImage(e.target.value)} placeholder="https://" />
+            </label>
+            <div className="admin-form__row">
+              <button type="submit" className="ghost-btn">
+                {editingItemId ? 'Save project' : 'Add project'}
+              </button>
+              <button type="button" onClick={resetForm}>
+                Cancel
+              </button>
+            </div>
+          </form>
+        </section>
+      )}
+
+      <section className="admin-card">
+        <div className="admin-card__head">
+          <h2>Projects</h2>
+          {!showForm && (
+            <button type="button" className="ghost-btn" onClick={openAdd}>
+              Add project
+            </button>
+          )}
+        </div>
+
+        {category.items.length === 0 ? (
+          <div className="admin-empty">
+            <p>No projects in this category yet.</p>
+            <button type="button" className="ghost-btn" onClick={openAdd}>
+              Add project
+            </button>
+          </div>
+        ) : (
+          <ul className="admin-list">
+            {category.items.map((item) => (
+              <li key={item.id}>
+                <div>
+                  <strong>{item.title}</strong>
+                  <span>{item.description}</span>
+                  <a href={item.website} target="_blank" rel="noreferrer">
+                    {item.website}
+                  </a>
+                </div>
+                <div className="admin-list__actions">
+                  <button type="button" onClick={() => openEdit(item.id)}>
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (confirm(`Delete “${item.title}”?`)) deleteItem(category.id, item.id)
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    </div>
+  )
+}
