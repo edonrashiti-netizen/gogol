@@ -1,4 +1,4 @@
-import { useMemo, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { useWorks } from '../../context/WorksContext'
 import { filesToDataUrls } from '../../lib/imageUpload'
@@ -13,6 +13,7 @@ export function AdminCategoryProjectsPage() {
     () => data.groups.find((item) => item.id === categoryId),
     [data.groups, categoryId],
   )
+  const formRef = useRef<HTMLElement>(null)
 
   const [showForm, setShowForm] = useState(false)
   const [editingItemId, setEditingItemId] = useState<string | null>(null)
@@ -23,6 +24,16 @@ export function AdminCategoryProjectsPage() {
   const [urlDraft, setUrlDraft] = useState('')
   const [uploading, setUploading] = useState(false)
   const [formError, setFormError] = useState('')
+
+  useEffect(() => {
+    if (!showForm) return
+    const frame = window.requestAnimationFrame(() => {
+      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      const titleInput = formRef.current?.querySelector('input')
+      if (titleInput instanceof HTMLInputElement) titleInput.focus()
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [showForm, editingItemId])
 
   if (!isAdminAuthenticated()) {
     return <Navigate to="/admin/login" replace />
@@ -147,7 +158,7 @@ export function AdminCategoryProjectsPage() {
       </header>
 
       {showForm && (
-        <section className="admin-card">
+        <section className="admin-card" ref={formRef} id="project-form">
           <div className="admin-card__head">
             <h2>{editingItemId ? 'Edit project' : 'Add project'}</h2>
             <button type="button" onClick={resetForm}>

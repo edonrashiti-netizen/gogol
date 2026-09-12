@@ -182,10 +182,10 @@
 
 .admin-list li {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 1rem;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 1rem;
   background: #0f0f0f;
   border: 1px solid var(--border);
@@ -206,7 +206,21 @@
 .admin-list__actions {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+@media (max-width: 640px) {
+  .admin-list li {
+    flex-wrap: wrap;
+  }
+
+  .admin-list__actions {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-end;
+  }
 }
 
 .admin-error {
@@ -281,7 +295,17 @@
 .admin-list__project {
   display: flex;
   gap: 0.85rem;
-  align-items: center;
+  align-items: flex-start;
+  min-width: 0;
+  flex: 1;
+}
+
+.admin-list__project > div {
+  min-width: 0;
+}
+
+.admin-list__project span {
+  overflow-wrap: anywhere;
 }
 
 .admin-list__thumb {
