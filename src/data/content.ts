@@ -24,15 +24,15 @@ export const pillars = [
 ]
 
 export const services = [
-  { number: '.01', title: 'Brand strategy' },
-  { number: '.02', title: 'Logo design' },
-  { number: '.03', title: 'Brand identity' },
-  { number: '.04', title: 'Brandbooks & guidelines' },
-  { number: '.05', title: 'Visual systems' },
-  { number: '.06', title: 'Social media design' },
-  { number: '.07', title: 'Content templates' },
-  { number: '.08', title: 'Campaign creatives' },
-  { number: '.09', title: 'Brand refresh' },
+  { number: '.01', title: 'Logo design' },
+  { number: '.02', title: 'Brand identity' },
+  { number: '.03', title: 'Brandbooks & guidelines' },
+  { number: '.04', title: 'Social media design' },
+  { number: '.05', title: 'Content templates' },
+  { number: '.06', title: 'Campaign creatives' },
+  { number: '.07', title: 'Visual systems' },
+  { number: '.08', title: 'Website design' },
+  { number: '.09', title: 'Other design' },
 ]
 
 export const projects = [
@@ -62,36 +62,36 @@ export const projects = [
   },
   {
     title: 'Loom Studio',
-    tags: ['Brandbook', 'Identity'],
+    tags: ['Brandbook', 'Website'],
     image:
       'https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Horizon',
-    tags: ['Logo', 'Social'],
+    tags: ['Identity', 'Web'],
     image:
       'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=1200&q=80',
   },
 ]
 
 export const aboutFocus = [
-  { title: 'Identity', subtitle: 'Logos that last' },
+  { title: 'Identity', subtitle: 'Logos & brand marks' },
   { title: 'Systems', subtitle: 'Brandbooks that guide' },
-  { title: 'Presence', subtitle: 'Social that stays sharp' },
+  { title: 'Presence', subtitle: 'Social & beyond' },
 ]
 
 export const aboutColumns = [
   {
     title: 'Who we are',
-    body: 'A branding studio focused on logos, brandbooks, and social design — craft first, clarity always.',
+    body: 'Gogol is a digital agency with a clear focus: brandbooks, logos, and social — plus websites and other design when the brand needs it.',
   },
   {
     title: 'Our philosophy',
-    body: 'A strong brand is a system, not a single mark. We build rules people can actually use.',
+    body: 'A strong brand is a system, not a single mark. We build identity first, then extend it across channels with craft and clarity.',
   },
   {
     title: 'How we work',
-    body: 'From discovery to final guidelines and social kits — collaborative, structured, and on schedule.',
+    body: 'From logo and guidelines to social kits and selected web or design projects — collaborative, structured, and on schedule.',
   },
 ]
 
@@ -104,7 +104,7 @@ export const testimonials = [
   },
   {
     quote:
-      'The social templates alone saved us hours every week — and the brand still feels premium.',
+      'The social templates alone saved us hours every week — and when we needed a site refresh, they kept it on-brand.',
     name: 'Maya Chen',
     role: 'Marketing Director',
   },
@@ -116,7 +116,8 @@ export const testimonials = [
   },
 ]
 
-export const servicesEyebrow = 'Brandbooks, logos & social'
-export const worksEyebrow = 'Identity work we are proud of'
-export const aboutEyebrow = 'A branding studio, not a catch-all agency'
-export const contactLead = "Tell us about your brand — logo, guidelines, or social refresh."
+export const servicesEyebrow = 'Focused on brand, open to more'
+export const worksEyebrow = 'Things we\'ve made'
+export const aboutEyebrow = 'We\'re more than a logo shop'
+export const contactLead =
+  'Logo, brandbook, social — or a website and other design. Tell us what you need.'

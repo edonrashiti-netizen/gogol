@@ -22,7 +22,7 @@ export function Testimonials() {
         >
           <div className="section-rule" />
           <h2 className="section-title">What clients say.</h2>
-          <p className="section-eyebrow">Identity work that lands</p>
+          <p className="section-eyebrow">Brand-first work that lands</p>
         </motion.div>
 
         <div className="testimonials__panel">

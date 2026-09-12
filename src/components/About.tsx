@@ -17,8 +17,8 @@ export function About() {
           <h2 className="section-title">About.</h2>
           <p className="section-eyebrow">{aboutEyebrow}</p>
           <p className="about__lead">
-            Gogol is a branding studio. We design logos, write brandbooks, and craft social systems
-            so your identity stays clear everywhere it shows up.
+            Gogol agency builds brands that hold together — logos, brandbooks, and social systems first,
+            with websites and other design when the story needs to go further.
           </p>
         </motion.div>
 
