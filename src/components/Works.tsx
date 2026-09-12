@@ -26,10 +26,6 @@ export function Works() {
         </motion.div>
 
         <div className="works__grid">
-          {loading && <p className="works__status">Loading…</p>}
-          {!loading && data.groups.length === 0 && (
-            <p className="works__status">Categories coming soon.</p>
-          )}
           {data.groups.map((category, i) => (
             <motion.div
               key={category.id}
@@ -47,6 +43,9 @@ export function Works() {
               </Link>
             </motion.div>
           ))}
+          {!loading && data.groups.length === 0 && (
+            <p className="works__status">Categories coming soon.</p>
+          )}
         </div>
       </div>
     </section>

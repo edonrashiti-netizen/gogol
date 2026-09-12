@@ -15,6 +15,7 @@ import {
   publishWorksData,
   saveWorksDataLocal,
 } from '../lib/worksStorage'
+import { seedWorksData } from '../data/seedWorks'
 import { createId, slugify, type WorkGroup, type WorkItem, type WorksData } from '../types/works'
 
 type WorksContextValue = {
@@ -46,14 +47,19 @@ type WorksContextValue = {
 const WorksContext = createContext<WorksContextValue | null>(null)
 
 export function WorksProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<WorksData>({ groups: [] })
-  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState<WorksData>(seedWorksData)
+  const [loading, setLoading] = useState(false)
 
   const reload = useCallback(async () => {
     setLoading(true)
-    const loaded = await loadWorksData()
-    setData(loaded)
-    setLoading(false)
+    try {
+      const loaded = await loadWorksData()
+      setData(loaded)
+    } catch {
+      setData(seedWorksData)
+    } finally {
+      setLoading(false)
+    }
   }, [])
 
   useEffect(() => {
