@@ -36,7 +36,7 @@ export function AdminGroupEditPage() {
   if (!group) {
     return (
       <div className="admin-shell">
-        <p>Group not found.</p>
+        <p>Category not found.</p>
         <Link to="/admin">Back</Link>
       </div>
     )
@@ -48,7 +48,7 @@ export function AdminGroupEditPage() {
       updateGroup(group.id, { name, slug, description, coverImage })
       setError('')
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Could not save group')
+      setError(err instanceof Error ? err.message : 'Could not save category')
     }
   }
 
@@ -77,7 +77,7 @@ export function AdminGroupEditPage() {
       <header className="admin-top">
         <div>
           <Link to="/admin" className="admin-back">
-            ← Groups
+            ← Categories
           </Link>
           <h1>{group.name}</h1>
         </div>
@@ -87,7 +87,7 @@ export function AdminGroupEditPage() {
       </header>
 
       <section className="admin-card">
-        <h2>Group settings</h2>
+        <h2>Category settings</h2>
         <form className="admin-form" onSubmit={onSaveGroup}>
           <label>
             Name
@@ -107,7 +107,7 @@ export function AdminGroupEditPage() {
           </label>
           {error && <p className="admin-error">{error}</p>}
           <button type="submit" className="ghost-btn">
-            Save group
+            Save category
           </button>
         </form>
       </section>

@@ -36,7 +36,7 @@ export function AdminLoginPage() {
           ← Site
         </Link>
         <h1>Admin login</h1>
-        <p>Manage work groups and projects.</p>
+        <p>Manage work categories and projects.</p>
         <label>
           Password
           <input

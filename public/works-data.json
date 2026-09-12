@@ -1,10 +1,10 @@
 {
   "groups": [
     {
-      "id": "group-logo",
-      "name": "Logo",
-      "slug": "logo",
-      "description": "Marks and identity systems built to last.",
+      "id": "cat-logo-design",
+      "name": "Logo design",
+      "slug": "logo-design",
+      "description": "Distinctive marks built to scale across print and screen.",
       "coverImage": "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80",
       "items": [
         {
@@ -24,11 +24,19 @@
       ]
     },
     {
-      "id": "group-brand",
-      "name": "Brand",
-      "slug": "brand",
-      "description": "Brandbooks, guidelines, and visual systems.",
+      "id": "cat-brand-identity",
+      "name": "Brand identity",
+      "slug": "brand-identity",
+      "description": "Full identity systems that hold a brand together.",
       "coverImage": "https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop&w=1200&q=80",
+      "items": []
+    },
+    {
+      "id": "cat-brandbooks",
+      "name": "Brandbooks & guidelines",
+      "slug": "brandbooks-guidelines",
+      "description": "Rules, voice, and guidelines teams can actually use.",
+      "coverImage": "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=80",
       "items": [
         {
           "id": "item-loom",
@@ -40,10 +48,10 @@
       ]
     },
     {
-      "id": "group-social",
-      "name": "Social",
-      "slug": "social",
-      "description": "Templates, campaigns, and feed systems.",
+      "id": "cat-social-media",
+      "name": "Social media design",
+      "slug": "social-media-design",
+      "description": "Feed systems and creatives that stay on-brand.",
       "coverImage": "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1200&q=80",
       "items": [
         {
@@ -63,10 +71,34 @@
       ]
     },
     {
-      "id": "group-web",
-      "name": "Web",
-      "slug": "web",
-      "description": "Websites and digital experiences.",
+      "id": "cat-content-templates",
+      "name": "Content templates",
+      "slug": "content-templates",
+      "description": "Reusable layouts for posts, stories, and launches.",
+      "coverImage": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+      "items": []
+    },
+    {
+      "id": "cat-campaign-creatives",
+      "name": "Campaign creatives",
+      "slug": "campaign-creatives",
+      "description": "Campaign visuals that carry the brand into the market.",
+      "coverImage": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=80",
+      "items": []
+    },
+    {
+      "id": "cat-visual-systems",
+      "name": "Visual systems",
+      "slug": "visual-systems",
+      "description": "Pattern libraries and visual language across touchpoints.",
+      "coverImage": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=1200&q=80",
+      "items": []
+    },
+    {
+      "id": "cat-website-design",
+      "name": "Website design",
+      "slug": "website-design",
+      "description": "Websites aligned with the brand system.",
       "coverImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
       "items": [
         {
@@ -77,6 +109,14 @@
           "image": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=1200&q=80"
         }
       ]
+    },
+    {
+      "id": "cat-other-design",
+      "name": "Other design",
+      "slug": "other-design",
+      "description": "Print, packaging, and other design when the brand needs it.",
+      "coverImage": "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?auto=format&fit=crop&w=1200&q=80",
+      "items": []
     }
   ]
 }

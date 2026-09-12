@@ -23,8 +23,8 @@ export function WorkGroupPage() {
 
           {!loading && !group && (
             <div className="work-page__empty">
-              <h1>Group not found</h1>
-              <p>This work group does not exist yet.</p>
+              <h1>Category not found</h1>
+              <p>This work category does not exist yet.</p>
               <Link to="/#works" className="ghost-btn">
                 Back to works
               </Link>
@@ -46,7 +46,7 @@ export function WorkGroupPage() {
 
               <div className="work-page__grid">
                 {group.items.length === 0 && (
-                  <p className="work-page__status">No projects in this group yet.</p>
+                  <p className="work-page__status">No projects in this category yet.</p>
                 )}
                 {group.items.map((item, i) => (
                   <motion.article

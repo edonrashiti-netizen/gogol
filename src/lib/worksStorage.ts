@@ -1,6 +1,6 @@
 import type { WorksData } from '../types/works'
 
-const STORAGE_KEY = 'gogol-works-data-v1'
+const STORAGE_KEY = 'gogol-works-data-v2'
 const AUTH_KEY = 'gogol-admin-auth'
 
 export const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'gogol-admin'

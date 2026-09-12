@@ -22,7 +22,7 @@ export function AdminDashboardPage() {
     setName('')
     setDescription('')
     setCoverImage('')
-    setMessage('Group created. Open it to add projects.')
+    setMessage('Category created. Open it to add projects.')
   }
 
   const onPublish = async () => {
@@ -46,7 +46,7 @@ export function AdminDashboardPage() {
       <header className="admin-top">
         <div>
           <p className="admin-kicker">Gogol admin</p>
-          <h1>Work groups</h1>
+          <h1>Work categories</h1>
         </div>
         <div className="admin-top__actions">
           <Link to="/">View site</Link>
@@ -80,11 +80,11 @@ export function AdminDashboardPage() {
       {message && <p className="admin-banner">{message}</p>}
 
       <section className="admin-card">
-        <h2>Add group</h2>
+        <h2>Add category</h2>
         <form className="admin-form" onSubmit={onAddGroup}>
           <label>
             Name
-            <input value={name} onChange={(e) => setName(e.target.value)} required placeholder="Web" />
+            <input value={name} onChange={(e) => setName(e.target.value)} required placeholder="Website design" />
           </label>
           <label>
             Description
@@ -92,7 +92,7 @@ export function AdminDashboardPage() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
-              placeholder="Websites and digital experiences"
+              placeholder="Websites aligned with the brand system"
             />
           </label>
           <label>
@@ -105,15 +105,15 @@ export function AdminDashboardPage() {
             />
           </label>
           <button type="submit" className="ghost-btn">
-            Create group
+            Create category
           </button>
         </form>
       </section>
 
       <section className="admin-card">
-        <h2>Groups</h2>
+        <h2>Categories</h2>
         {loading && <p>Loading…</p>}
-        {!loading && data.groups.length === 0 && <p>No groups yet.</p>}
+        {!loading && data.groups.length === 0 && <p>No categories yet.</p>}
         <ul className="admin-list">
           {data.groups.map((group) => (
             <li key={group.id}>
@@ -131,7 +131,7 @@ export function AdminDashboardPage() {
                 <button
                   type="button"
                   onClick={() => {
-                    if (confirm(`Delete group “${group.name}”?`)) deleteGroup(group.id)
+                    if (confirm(`Delete category “${group.name}”?`)) deleteGroup(group.id)
                   }}
                 >
                   Delete

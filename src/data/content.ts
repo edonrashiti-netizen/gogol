@@ -78,7 +78,7 @@ export const testimonials = [
 ]
 
 export const servicesEyebrow = 'Focused on brand, open to more'
-export const worksEyebrow = 'Browse by group'
+export const worksEyebrow = 'Browse by category'
 export const aboutEyebrow = "We're more than a logo shop"
 export const contactLead =
   'Logo, brandbook, social — or a website and other design. Tell us what you need.'
